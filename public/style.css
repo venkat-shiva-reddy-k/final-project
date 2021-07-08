@@ -85,3 +85,96 @@ li a:hover {
 	color: #ee2536;
 }
 
+.text-white {
+	color: #fff;
+}
+
+.content {
+	width: 70%;
+	margin-left: 50%;
+	transform: translate(-50%,0%);
+	margin-top: 16px;
+}
+
+
+.row-content {
+	clear: both;
+	padding: 24px 0px;
+	display: flex;
+}
+
+.left {
+	width: 50%;
+	float: left;
+	margin: auto;
+}
+.right {
+	width: 50%;
+	float: right;
+	margin: auto;
+}
+
+.left img, .right img {
+	width: 100%;
+	border: 1px solid #000080;
+}
+
+.start{
+	width: 33.33%;
+	float: left;
+	margin: 8px;
+	border: 1px solid #000080;
+	border-radius: 8px;
+}
+
+.center {
+	width: 33.33%;
+	float: center;
+	margin: 8px;
+	border: 1px solid #000080;
+	border-radius: 8px;
+}
+
+.end {
+	width: 33.33%;
+	float: right;
+	margin: 8px;
+	border: 1px solid #000080;
+	border-radius: 8px;
+}
+
+.start img, .center img, .end img {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 7px 7px 0 0;
+}
+
+.text-center {
+	width: 100%;
+	text-align: center;
+}
+
+.title {
+	font-size: 32px;
+	padding: 8px;
+	color: #000080;
+}
+
+.sub-title {
+	font-size: 24px;
+	padding: 8px;
+	color: #000080;
+}
+
+u {
+	color: #000080;
+}
+
+p {
+	text-align: justify;
+}
+
+p a, a:hover, a::after {
+	color: #000080;
+	text-decoration: none;
+}

@@ -178,3 +178,80 @@ p a, a:hover, a::after {
 	color: #000080;
 	text-decoration: none;
 }
+
+
+.border {
+	border: 1px solid #000080;
+	height: auto;
+}
+
+.form-div {
+	margin-top: 10%;
+	margin-left: 50%;
+	transform: translate(-50%,0%);
+	
+}
+
+.msg {
+	border: 1px solid #138808;
+	color: #138808;
+	border-radius: 4px;
+	padding: 8px;
+	text-align: center;
+	margin: 16px;
+	width: 30%;
+	margin-left: 50%;
+	transform: translate(-50%,0%);
+}
+
+.msg-err {
+	border: 1px solid red;
+	color: red;
+	border-radius: 4px;
+	padding: 8px;
+	text-align: center;
+	margin: 16px;
+	width: 30%;
+	margin-left: 50%;
+	transform: translate(-50%,0%);
+}
+
+input[type="file"] {
+    display: none;
+}
+.inputfile {
+    border: 1px solid #000080;
+	border-radius: 4px;
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+	width: 100%;
+}
+
+.form-btn{
+    cursor: pointer;
+    border: 1px solid #ee2536;
+	border-radius: 8px;
+    background: #000080;
+    color: #ffffff;
+    font-size: large;
+    font-family: Verdana;
+    padding: 12px 40px;
+    margin-left: 50%;
+	transform: translate(-50%,0%);
+	margin-top: 24px;
+}
+
+.img_content {
+	width: 70%;
+	margin-left: 50%;
+	transform: translate(-50%,0%);
+}
+
+.img_content img {
+	width: 300px;
+	height: 300px;
+	margin: 10px;
+	object-fit: cover;
+	border: 1px solid #000080;
+}

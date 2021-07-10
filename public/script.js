@@ -41,5 +41,52 @@ function uploadImage(file) {
 }
 
 function upload() {
-   
+   convertToBase64();
+}
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+async function convertToBase64() {
+    const result = await toBase64(userImg.files[0]).catch(e => Error(e));
+    if (result instanceof Error) {
+        console.log('Error: ', result.message);
+        return;
+    }
+
+    var block = result.split(";");
+    var contentType = block[0].split(":")[1];
+    var realData = block[1].split(",")[1];
+    var blob = b64toBlob(realData, contentType);
+    var data = new FormData()
+    data.append('image', blob)
+    uploadImage(data);
+}
+
+function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, { type: contentType });
+    return blob;
 }

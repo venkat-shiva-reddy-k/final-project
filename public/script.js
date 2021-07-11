@@ -90,3 +90,22 @@ function b64toBlob(b64Data, contentType, sliceSize) {
     var blob = new Blob(byteArrays, { type: contentType });
     return blob;
 }
+
+function getImages() {
+    let url = 'http://localhost:3000/userImages';
+    fetch(url, {
+        method: 'GET'
+    }).then((response) => {
+        response.json().then((data) => {
+            if (data['status'] === 'success') {
+                for (let i in data['result']) {
+
+                    var img = document.createElement('img');
+                    img.src = 'data:'+data['result'][i]['img_type']+';base64,'+data['result'][i]['img_data'];
+                    document.getElementById('userImagesDiv').appendChild(img);
+
+                }
+            }
+        })
+    });
+}

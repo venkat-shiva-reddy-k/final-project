@@ -192,3 +192,36 @@ app.post('/uploadImage', multer().single('image'), async (req, res) => {
 }, (error, req, res, next) => {
     res.send({ error: error.message });
 })
+
+app.get('/userImages', async (req, res) => {
+    var sql = "SELECT * FROM UserImages";
+
+    con.query(sql, function (err, result) {
+        if (err) {
+            res.send({ error: error.message });
+        }
+        else {
+            for (let i in result) {
+                result[i]['img_data'] = new Buffer.from(result[i]['img_data']).toString("base64");
+            }
+            res.send({ status: 'success', result: result });
+        }
+    });
+})
+
+app.get('/view-images', (req, res) => {
+
+    var filePath = '.' + req.url;
+    if (filePath == './view-images') {
+        filePath = './view.html';
+    }
+
+    var extname = String(path.extname(filePath)).toLowerCase();
+
+    var contentType = mimeTypes[extname] || 'application/octet-stream';
+
+    fs.readFile(filePath, function (error, content) {
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(content, 'utf-8');
+    });
+})

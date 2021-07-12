@@ -205,8 +205,8 @@ p a, a:hover, a::after {
 }
 
 .msg-err {
-	border: 1px solid red;
-	color: red;
+	border: 1px solid #000080;
+	color: #000080;
 	border-radius: 4px;
 	padding: 8px;
 	text-align: center;

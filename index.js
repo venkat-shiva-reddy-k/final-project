@@ -63,3 +63,20 @@ app.get('', (req, res) => {
         res.end(content, 'utf-8');
     });
 })
+
+app.get('/tourism', (req, res) => {
+
+    var filePath = '.' + req.url;
+    if (filePath == './tourism') {
+        filePath = './tourism.html';
+    }
+
+    var extname = String(path.extname(filePath)).toLowerCase();
+
+    var contentType = mimeTypes[extname] || 'application/octet-stream';
+
+    fs.readFile(filePath, function (error, content) {
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(content, 'utf-8');
+    });
+})

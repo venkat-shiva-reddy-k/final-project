@@ -148,3 +148,47 @@ app.get('/food', (req, res) => {
         res.end(content, 'utf-8');
     });
 })
+
+
+app.get('/post', (req, res) => {
+
+    var filePath = '.' + req.url;
+    if (filePath == './post') {
+        filePath = './post.html';
+    }
+
+    var extname = String(path.extname(filePath)).toLowerCase();
+
+    var contentType = mimeTypes[extname] || 'application/octet-stream';
+
+    fs.readFile(filePath, function (error, content) {
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(content, 'utf-8');
+    });
+})
+
+app.post('/uploadImage', multer().single('image'), async (req, res) => {
+
+    
+    var dimensions = sizeOf(req.file.buffer);
+    if (dimensions.width>1600 | dimensions.height>900) {
+        return res.send({ error: 'Image resolution is higher than 1600x900!' });
+    }
+
+    var query = "INSERT INTO UserImages SET ?",
+        values = {
+            img_name: req.file.fieldname + '-' + Date.now(),
+            img_type: req.file.mimetype,
+            img_size:req.file.size,
+            img_data: req.file.buffer
+        };
+
+    con.query(query, values, function (err, result) {
+        if (err) throw err;
+        res.send({ status: 'success' });
+    });
+
+
+}, (error, req, res, next) => {
+    res.send({ error: error.message });
+})
